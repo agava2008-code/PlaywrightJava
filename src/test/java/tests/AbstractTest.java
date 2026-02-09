@@ -2,18 +2,23 @@ package tests;
 
 import com.microsoft.playwright.*;
 import framework.Injector;
-import framework.Pages;
 import framework.Steps;
 
 import java.util.List;
 
 public class AbstractTest {
+    private static final ThreadLocal<Playwright> playwrightThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<Browser> browserThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<BrowserContext> contextThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<Page> pageThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<Injector> injectorThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<Steps> stepsThreadLocal = new ThreadLocal<>();
+
     protected Playwright playwright;
     protected Browser browser;
     protected BrowserContext context;
     protected Page page;
     protected Injector injector;
-    protected Pages pages;
     protected Steps steps;
 
     public void setUp() {
@@ -22,14 +27,27 @@ public class AbstractTest {
         context = browser.newContext();
         page = context.newPage();
         injector = new Injector(page);
-//        pages = new Pages(page);
         steps = new Steps(injector);
+
+        playwrightThreadLocal.set(playwright);
+        browserThreadLocal.set(browser);
+        contextThreadLocal.set(context);
+        pageThreadLocal.set(page);
+        injectorThreadLocal.set(injector);
+        stepsThreadLocal.set(steps);
     }
 
     public void tearDown() {
-        context.close();
-        browser.close();
-        playwright.close();
+        if (context != null) context.close();
+        if (browser != null) browser.close();
+        if (playwright != null) playwright.close();
+
+        playwrightThreadLocal.remove();
+        browserThreadLocal.remove();
+        contextThreadLocal.remove();
+        pageThreadLocal.remove();
+        injectorThreadLocal.remove();
+        stepsThreadLocal.remove();
     }
 
     private BrowserType.LaunchOptions getLaunchOptions(boolean isHeadless) {
