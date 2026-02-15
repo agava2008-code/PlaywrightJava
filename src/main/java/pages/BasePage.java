@@ -1,51 +1,48 @@
 package pages;
 
-import com.microsoft.playwright.ElementHandle;
-import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
+import com.microsoft.playwright.*;
+import pages.components.*;
 
-import java.util.List;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-
-
+/**
+ * Base page class that provides access to all page interaction components.
+ * Uses composition to provide specialized component classes for different actions.
+ * All page objects should extend this class and use the components directly.
+ */
 public abstract class BasePage {
+
     protected Page page;
 
-    protected ElementHandle getElementHandle(String selector) {
-        return page.waitForSelector(selector);
+    // Component classes for different actions
+    protected ElementActions element;
+    protected WaitActions wait;
+    protected MouseActions mouse;
+    protected KeyboardActions keyboard;
+    protected DropdownActions dropdown;
+    protected NavigationActions navigation;
+    protected FileActions file;
+    protected FrameActions frame;
+    protected AssertionActions assertion;
+    protected JsActions js;
+
+    /**
+     * Initializes the page components.
+     * @param page The Playwright page object.
+     */
+    protected void initComponents(Page page) {
+        this.page = page;
+        this.element = new ElementActions(page);
+        this.wait = new WaitActions(page);
+        this.mouse = new MouseActions(page);
+        this.keyboard = new KeyboardActions(page);
+        this.dropdown = new DropdownActions(page);
+        this.navigation = new NavigationActions(page);
+        this.file = new FileActions(page);
+        this.frame = new FrameActions(page);
+        this.assertion = new AssertionActions(page);
+        this.js = new JsActions(page);
     }
 
     protected Locator getLocator(String selector) {
-//        page.locator(selector).waitFor();
         return page.locator(selector);
     }
-
-    protected void executeClick(String selector) {
-        getLocator(selector).click();
-    }
-
-    protected void enterValue(String selector, String value) {
-        getLocator(selector).fill(value);
-    }
-
-    protected String getText(String selector) {
-        return getLocator(selector).innerText();
-    }
-
-    protected void validateText(String selector, String expectedText) {
-        assertThat(getLocator(selector)).hasText(expectedText);
-    }
-
-    protected List<String> getAllTexts(String selector) {
-        return getLocator(selector).allTextContents();
-    }
-
-    protected void validateTexts(String selector, String... expectedTexts) {
-        assertThat(getLocator(selector)).hasText(expectedTexts);
-    }
-
-
-
 }
-
