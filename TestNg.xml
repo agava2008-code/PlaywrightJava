@@ -3,6 +3,8 @@
 <suite name="Playwright Test Suite" parallel="classes" thread-count="5">
     <listeners>
         <listener class-name="listeners.AllureScreenshotListener"/>
+ <listeners>
+        <listener class-name="listeners.AllureScreenshotListener"/>
         <listener class-name="listeners.RetryTransformer"/>
     </listeners>
     <test name="All Tests">
