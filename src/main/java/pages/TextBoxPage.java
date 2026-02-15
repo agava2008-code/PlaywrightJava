@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 
 public class TextBoxPage extends BasePage {
     private final String INPUT_VALUE = "#%s";
-    private final String submitButton = "#submit";
+    private final String SUBMIT_BUTTON = "#submit";
     private final String OUTPUT_VALUE = "//p[@id='%s']";
     private final String OUTPUT_CONTAINER = "#output";
     private final String EMAIL_FIELD = "#userEmail";
@@ -19,7 +19,7 @@ public class TextBoxPage extends BasePage {
 
     @Step("Click submit button")
     public void clickSubmitButton() {
-        element.click(submitButton);
+        element.click(SUBMIT_BUTTON);
     }
 
     @Step("Validate output field '{fieldName}' has value: {expectedValue}")
