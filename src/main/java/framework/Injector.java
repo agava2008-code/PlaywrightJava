@@ -20,7 +20,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class Injector {
 
     static String JAVA_PACKAGE_PREFIX = "java.";
-    static String COMPONENTS_PACKAGE_PREFIX = "pages.components.";
+    static String COMPONENTS_PACKAGE_PREFIX = "ui.pages.components.";
     static String INIT_COMPONENTS_METHOD = "initComponents";
 
     Page playwrightPage;

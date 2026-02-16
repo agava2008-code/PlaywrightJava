@@ -1,7 +1,7 @@
 package tests.ui;
 
-import enums.Category;
-import enums.SubCategory;
+import ui.enums.Category;
+import ui.enums.SubCategory;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import validators.BaseValidator;

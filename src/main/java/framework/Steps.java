@@ -1,8 +1,8 @@
 package framework;
 
-import steps.ElementSteps;
-import steps.MainSteps;
-import steps.TextBoxSteps;
+import ui.steps.ElementSteps;
+import ui.steps.MainSteps;
+import ui.steps.TextBoxSteps;
 
 public class Steps {
     public MainSteps main;
