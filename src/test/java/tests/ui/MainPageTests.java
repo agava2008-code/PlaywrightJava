@@ -1,6 +1,6 @@
 package tests.ui;
 
-import enums.Category;
+import ui.enums.Category;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import utils.EnumUtils;
