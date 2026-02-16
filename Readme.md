@@ -1,7 +1,5 @@
 # Playwright Java Test Automation Framework
 
-A robust, scalable test automation framework built with **Playwright** and **Java 17**, following modern design patterns and best practices. This framework provides a comprehensive solution for UI testing with support for parallel execution, detailed reporting, and automatic retry mechanisms.
-
 ---
 
 ## 📋 Table of Contents
