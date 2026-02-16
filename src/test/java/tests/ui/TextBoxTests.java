@@ -1,9 +1,9 @@
 package tests.ui;
 
-import builders.TextBoxModelBuilder;
-import enums.Category;
-import enums.SubCategory;
-import models.TextBoxModel;
+import ui.builders.TextBoxModelBuilder;
+import ui.enums.Category;
+import ui.enums.SubCategory;
+import ui.models.TextBoxModel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
